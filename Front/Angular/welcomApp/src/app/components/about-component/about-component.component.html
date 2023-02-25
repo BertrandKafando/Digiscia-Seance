@@ -1,0 +1,24 @@
+<div class="container-fluid">
+  <h3>About</h3>
+
+  <div class="card" style="width: 18rem;">
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">Nom: {{info.nom}}</li>
+    <li class="list-group-item">Email: {{info.email}}</li>
+    <li class="list-group-item">Tel: {{info.tel}}</li>
+  </ul>
+</div>
+
+    <h3>comments</h3>
+<div class="d-flex justify-content-start">
+  <div class="mr-1">  Message: <input type="text" #message (keyup.enter)="addComment(message.value)" ></div>
+
+   <button  class="btn btn-primary" (click)="addComment(message.value)">Add</button>
+</div>
+
+<h3>Listes de commentaires</h3>
+ <div class="card" style="width: 18rem;">
+  <ul class="list-group list-group-flush">
+  <li *ngFor="let comment of comments"  class="list-group-item">{{comment}}</li>
+</ul>
+
