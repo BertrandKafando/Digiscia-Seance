@@ -1,4 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+
 
 @Component({
   selector: 'app-about-component',
@@ -14,8 +16,9 @@ export class AboutComponentComponent implements OnInit {
   };
 
   comments: string[] = [];
+  commentsFromBackend: string[] = [];
 
-  constructor() { }
+  constructor(private httpClientModule: HttpClient) { }
 
   ngOnInit(): void {
 
@@ -26,6 +29,22 @@ export class AboutComponentComponent implements OnInit {
       this.comments.push(value);
     }
   }
+
+
+  getAllComments() {
+
+    this.httpClientModule.get('http://localhost:8082/localhost:8082/prepSign/all')
+      .subscribe(
+        (response) => {
+          console.log(response);
+          this.commentsFromBackend = response as string[];
+        }
+      );
+
+  }
+
+
+
 
 
 
